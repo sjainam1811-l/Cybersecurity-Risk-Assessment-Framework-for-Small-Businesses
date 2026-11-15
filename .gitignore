@@ -1,0 +1,32 @@
+# Node.js
+node_modules/
+frontend/node_modules/
+build/
+frontend/build/
+.env.local
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+backend/venv/
+env/
+.venv/
+
+# Database & runtime data
+data/
+backend/data/
+*.log
+
+# Environment secrets
+.env
+.env.*
+backend/.env
+frontend/.env
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Surfaces */
+  --bg-base: #0C0A09;
+  --bg-surface: #151210;
+  --bg-raised: #1E1A17;
+
+  /* Borders */
+  --border: #2A2420;
+  --border-strong: #3A322C;
+
+  /* Accent (Single Brand Color) */
+  --accent: #F2511B;
+  --accent-hover: #FF6A35;
+  --accent-active: #E04511;
+  --accent-soft: rgba(242, 81, 27, 0.12);
+
+  /* Typography */
+  --text-primary: #F5F1EE;
+  --text-secondary: #B3A9A1;
+  --text-muted: #7A6F67;
+
+  /* Severity Tokens (Single Source of Truth) */
+  --sev-low: #3FA66B;
+  --sev-low-bg: rgba(63, 166, 107, 0.12);
+  --sev-low-border: rgba(63, 166, 107, 0.30);
+
+  --sev-medium: #E8B431;
+  --sev-medium-bg: rgba(232, 180, 49, 0.12);
+  --sev-medium-border: rgba(232, 180, 49, 0.30);
+
+  --sev-high: #F2701D;
+  --sev-high-bg: rgba(242, 112, 29, 0.12);
+  --sev-high-border: rgba(242, 112, 29, 0.30);
+
+  --sev-critical: #E5484D;
+  --sev-critical-bg: rgba(229, 72, 77, 0.12);
+  --sev-critical-border: rgba(229, 72, 77, 0.30);
+
+  color-scheme: dark;
+}
+
+/* Base resets & typography */
+html,
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove spin buttons from number inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--accent-soft);
+  color: var(--text-primary);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Subtle header radial glow (accent at 6% opacity) */
+.header-glow {
+  background-image: radial-gradient(circle at 50% -20%, rgba(242, 81, 27, 0.06), transparent 70%);
+}
+
+/* Component Classes */
+.card-dark {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.input-dark {
+  height: 40px;
+  background-color: var(--bg-raised);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  padding-left: 12px;
+  padding-right: 12px;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+.input-dark::placeholder {
+  color: var(--text-muted);
+}
+.input-dark:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(242, 81, 27, 0.4);
+}
+
+/* Select specific styling with small 16px chevron */
+/* autoprefixer: off */
+select,
+select.input-dark {
+  color-scheme: light !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-color: var(--bg-raised) !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B3A9A1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 16px 16px !important;
+  padding-right: 36px !important;
+  cursor: pointer;
+}
+
+@supports (-webkit-appearance: none) {
+  select,
+  select.input-dark {
+    -webkit-appearance: none !important;
+  }
+}
+
+select::-ms-expand,
+select.input-dark::-ms-expand {
+  display: none !important;
+}
+select option,
+select.input-dark option {
+  background-color: var(--bg-raised);
+  color: var(--text-primary);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background-color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+  cursor: pointer;
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+}
+.btn-primary:active:not(:disabled) {
+  background-color: var(--accent-active);
+}
+.btn-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(242, 81, 27, 0.4);
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: var(--bg-raised);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-weight: 500;
+  border-radius: 8px;
+  transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  border-color: var(--border-strong);
+  background-color: rgba(30, 26, 23, 0.9);
+  color: #FFFFFF;
+}
+.btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(242, 81, 27, 0.4);
+}
+
+.btn-danger {
+  background-color: transparent;
+  border: 1px solid var(--sev-critical);
+  color: var(--sev-critical);
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 150ms ease, color 150ms ease;
+  cursor: pointer;
+}
+.btn-danger:hover {
+  background-color: var(--sev-critical-bg);
+}
+.btn-danger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(229, 72, 77, 0.4);
+}
+
+/* Ghost Add Button with plus icon */
+.btn-ghost-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+.btn-ghost-add:hover {
+  background-color: var(--accent-soft);
+  color: var(--accent-hover);
+}
+.btn-ghost-add:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(242, 81, 27, 0.4);
+}
+
+/* Delete 32px icon button */
+.btn-icon-delete {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+.btn-icon-delete:hover {
+  color: var(--sev-critical);
+  background-color: var(--sev-critical-bg);
+}
+.btn-icon-delete:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(229, 72, 77, 0.4);
+}
+
+/* Severity Pill Classes */
+.pill-low {
+  background-color: var(--sev-low-bg);
+  border: 1px solid var(--sev-low-border);
+  color: var(--sev-low);
+  font-weight: 600;
+}
+.pill-medium {
+  background-color: var(--sev-medium-bg);
+  border: 1px solid var(--sev-medium-border);
+  color: var(--sev-medium);
+  font-weight: 600;
+}
+.pill-high {
+  background-color: var(--sev-high-bg);
+  border: 1px solid var(--sev-high-border);
+  color: var(--sev-high);
+  font-weight: 600;
+}
+.pill-critical {
+  background-color: var(--sev-critical-bg);
+  border: 1px solid var(--sev-critical-border);
+  color: var(--sev-critical);
+  font-weight: 600;
+}
+
+/* Skeleton Loading Shimmer */
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #1E1A17 25%, #2A2420 50%, #1E1A17 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Tabular figures for numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
